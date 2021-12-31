@@ -10,5 +10,4 @@ INSERT INTO meal (meal_name, meal_image) VALUES
 ("Hummus", "test.png"),
 ("Majo", "test.png"),
 ("Cake", "test.png"),
-("Fries", "test.png"),
-;
+("Fries", "test.png");
