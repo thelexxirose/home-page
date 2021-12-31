@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.title {
+    text-align: center;
+    font-size: 350%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.content {
+    display: flex;
+    width: 100%;
+}
+
+.gridContainer {
+    display: inline-grid;
+    grid-template-columns: repeat(4, 250px);
+    column-gap: 20px;
+    row-gap: 100px;
+    justify-content: space-between;
+    flex: 5;
+}
+
+.filler {
+    flex: 1;
+}
+
+
+/* Menu */
+
+.menu {
+    display: flex;
+    color: black;
+    justify-content: space-around;
+    margin: 60px 0;
+    background-color: cadetblue;
+}
+
+.menu a {
+    text-decoration: none;
+    background-color: cadetblue;
+    padding: 20px 40px;
+    border-radius: 10px;
+    font-size: 120%;
+    width: 7vw;
+}
+
+/* Meal boxes */
+
+.meal {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    background-color: bisque;
+    border-radius: 10px;
+    outline: 3px solid black;
+}
+
+.meal .mealImg {
+    border-radius: 10px 10px 0 0;
+    outline: 3px solid black;
+}
+
+.meal .mealText {
+    text-align: center;
+    color: black;
+    font-size: 120%;
+    margin: 20px 0;
+}
