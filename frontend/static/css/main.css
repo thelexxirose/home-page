@@ -6,6 +6,7 @@ body {
 .title {
     text-align: center;
     font-size: 350%;
+    margin-top: 20px;
 }
 
 .container {
