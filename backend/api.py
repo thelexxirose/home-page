@@ -1,5 +1,5 @@
 import flask
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from pathlib import Path
 
 from db import mydb, mycursor
@@ -81,6 +81,14 @@ def create_meal() -> str:
     mydb.commit()
     
     return "OK"
+    
+    
+@app.route("/images/<path:file>", methods=["GET"])
+def get_image(file: str):
+    
+    path = Path(__file__).parent / "assets"
+    
+    return send_from_directory(path, file)
     
 
 
