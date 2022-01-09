@@ -1,6 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from flask.json import jsonify
 import requests
 from pathlib import Path
+
+from werkzeug.utils import redirect
 
 # Defining app and config
 app = Flask(__name__, static_url_path="", static_folder="static", template_folder="templates")
@@ -15,7 +18,7 @@ def home():
     meals = requests.get("http://localhost:5000/meals").json()
     
     for i, meal in enumerate(meals):
-        meals[i].append(f"http://192.168.38.100:5000/images/{ meal[2] }")
+        meals[i].append(f"http://localhost:5000/images/{ meal[2] }")
     
     print(meals[2])
 
@@ -25,9 +28,30 @@ def home():
         meals=meals
     )
     
-@app.route("/meal/<int:meal_id>", methods=["GET"])
+@app.route("/meals/<int:meal_id>", methods=["GET"])
 def meal(meal_id: int):
-    return f"Meal ID: {meal_id}"
+    return render_template(
+        "create_meal.html"                
+    )
+    
+@app.route("/meals/create", methods=["GET", "POST"])
+def create_meal():
+    if request.method == "POST":
+        img = request.files["image"]
+        
+        data = { 
+            "name": request.form["title"]
+        }
+        
+        f = {
+            "image": (img.filename, img.stream.read(), "multipart/form-data")
+        }
+        
+        requests.post("http://localhost:5000/meals/create", data=data, files=f)
+    
+    return render_template(
+        "create_meal.html"                
+    )
     
     
 app.run(host="0.0.0.0", port=5001)
