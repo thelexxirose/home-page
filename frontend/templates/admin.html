@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Home</title>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Home</div>
+        <div class="menu">
+            <a href="#">Home</a>
+            <a href="#">Recipes</a>
+            <a href="#">Something else</a>
+        </div>
+        <div class="content">
+            <div class="filler">
+            </div>
+            <div class="contentContainer">
+                <div id="addIngredient">
+                    <form action="/ingredients/add" method="post">
+                        <label for="ingredient_name">Ingredient name: </label>
+                        <input type="text" name="ingredient_name">
+                        <label for="unit">Unit: </label>
+                        <input type="text" name="unit">
+                        <label for="cost_per_unit">Cost per unit: </label>
+                        <input type="text" name="cost_per_unit">
+                        <label for="calories_per_unit">Calories per unit: </label>
+                        <input type="text" name="calories_per_unit">
+                        <label for="protein_per_unit">Protein per unit: </label>
+                        <input type="text" name="protein_per_unit">
+                        <label for="carbs_per_unit">Carbs per unit: </label>
+                        <input type="text" name="carbs_per_unit">
+                        <label for="fat_per_unit">Fat per unit</label>
+                        <input type="text" name="fat_per_unit">
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="filler"></div>
+        </div>
+    </div>
+    <footer class="footer">
+        Hello
+    </footer>
+</body>
+</html>
