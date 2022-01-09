@@ -1,6 +1,7 @@
 import flask
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, send_from_directory, abort
 from pathlib import Path
+from os.path import isfile
 
 from db import mydb, mycursor
 
@@ -71,8 +72,18 @@ def create_meal() -> str:
     
     image = request.files["image"]
     
-    if image.filename != "":
+    if image.filename != "" and not isfile(f"{path}/{image.filename}"):
         image.save(f"{path}/{image.filename}")
+    
+    query = f"SELECT meal_name FROM meal WHERE meal_name='{request.form['name']}'"
+    
+    mycursor.execute(query)
+    
+    myres = mycursor.fetchall()
+    
+    # Returns a duplicate error
+    if len(myres) > 0:
+        abort(409)
     
     query = f"INSERT INTO meal (meal_name, meal_image) VALUES ('{request.form['name']}', '{image.filename}')"
     
@@ -80,7 +91,7 @@ def create_meal() -> str:
     
     mydb.commit()
     
-    return "OK"
+    return "", 200
     
     
 @app.route("/images/<path:file>", methods=["GET"])
