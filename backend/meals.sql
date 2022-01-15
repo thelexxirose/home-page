@@ -1,5 +1,5 @@
-DROP TABLE meal;
-DROP TABLE ingredients;
+/*DROP TABLE meal;
+DROP TABLE ingredients;*/
 
 CREATE TABLE meal (
     id int NOT NULL AUTO_INCREMENT,
