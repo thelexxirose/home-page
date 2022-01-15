@@ -20,21 +20,38 @@
             </div>
             <div class="contentContainer">
                 <div id="addIngredient">
+                    <div class="header">Add ingredient</div>
                     <form action="/ingredients/add" method="post">
-                        <label for="ingredient_name">Ingredient name: </label>
-                        <input type="text" name="ingredient_name">
-                        <label for="unit">Unit: </label>
-                        <input type="text" name="unit">
-                        <label for="cost_per_unit">Cost per unit: </label>
-                        <input type="text" name="cost_per_unit">
-                        <label for="calories_per_unit">Calories per unit: </label>
-                        <input type="text" name="calories_per_unit">
-                        <label for="protein_per_unit">Protein per unit: </label>
-                        <input type="text" name="protein_per_unit">
-                        <label for="carbs_per_unit">Carbs per unit: </label>
-                        <input type="text" name="carbs_per_unit">
-                        <label for="fat_per_unit">Fat per unit</label>
-                        <input type="text" name="fat_per_unit">
+                        <table>
+                            <tr>
+                                <td><label for="ingredient_name">Ingredient name: </label></td>
+                                <td><input type="text" name="ingredient_name"><br></td>
+                            </tr>
+                            <tr>
+                                <td><label for="unit">Unit: </label></td>
+                                <td><input type="text" name="unit"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="cost_per_unit">Cost per unit: </label></td>
+                                <td><input type="text" name="cost_per_unit"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="calories_per_unit">Calories per unit: </label></td>
+                                <td><input type="text" name="calories_per_unit"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="protein_per_unit">Protein per unit: </label></td>
+                                <td><input type="text" name="protein_per_unit"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="carbs_per_unit">Carbs per unit: </label></td>
+                                <td><input type="text" name="carbs_per_unit"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="fat_per_unit">Fat per unit</label></td>
+                                <td><input type="text" name="fat_per_unit"></td>
+                            </tr>
+                        </table>
                         <button type="submit">Submit</button>
                     </form>
                 </div>
