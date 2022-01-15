@@ -60,6 +60,43 @@ def get_meal_ingredients(meal_id: int) -> flask.wrappers.Response:
     return jsonify(myres)
 
 
+@app.route("/ingredients/add", methods=["POST"])
+def add_ingredient():
+    
+    data = request.form.to_dict()
+    
+    query = f"SELECT id FROM ingredients WHERE ingredient_name='{data['ingredient_name']}' AND unit='{data['unit']}'"
+    
+    mycursor.execute(query)
+    
+    myres = mycursor.fetchall()
+    
+    if len(myres) > 0:
+        abort(409)
+    
+    query = f"INSERT INTO ingredients (\
+        ingredient_name,\
+        unit,\
+        cost_per_unit,\
+        calories_per_unit,\
+        protein_per_unit,\
+        carbs_per_unit,\
+        fat_per_unit)\
+        VALUES ('{data['ingredient_name']}',\
+            '{data['unit']}',\
+            '{data['cost_per_unit']}',\
+            '{data['calories_per_unit']}',\
+            '{data['protein_per_unit']}',\
+            '{data['carbs_per_unit']}',\
+            '{data['fat_per_unit']}')"
+        
+    mycursor.execute(query)
+    
+    mydb.commit()
+    
+    return "", 200
+
+
 @app.route("/meals/create", methods=["POST"])
 def create_meal() -> str:
     """Create a meal and commit it to DB.
