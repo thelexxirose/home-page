@@ -1,9 +1,5 @@
-from flask import Flask, render_template, request
-from flask.json import jsonify
+from flask import Flask, render_template, request, redirect, url_for
 import requests
-from pathlib import Path
-
-from werkzeug.utils import redirect
 
 # Defining app and config
 app = Flask(__name__, static_url_path="", static_folder="static", template_folder="templates")
@@ -13,12 +9,12 @@ app.config["DEBUG"] = True
 @app.route("/", methods=["GET"])
 def home():
     
-    path = Path(__file__).parent.parent / "backend/assets"
+    #path = Path(__file__).parent.parent / "backend/assets"
     
     meals = requests.get("http://localhost:5000/meals").json()
     
     for i, meal in enumerate(meals):
-        meals[i].append(f"http://localhost:5000/images/{ meal[2] }")
+        meals[i].append(f"https://backend.thelexxirose.tech/images/{ meal[2] }")
     
     print(meals[2])
 
@@ -52,6 +48,19 @@ def create_meal():
     return render_template(
         "create_meal.html"                
     )
+
+@app.route("/admin", methods=["GET"])
+def admin():
+    return render_template("admin.html")
+  
+@app.route("/ingredients/add", methods=["POST"])
+def add_ingredient():
+    if request.method == "POST":
+        data = request.form.to_dict()
+        
+        requests.post("http://localhost:5000/ingredients/add", data=data)
+        
+    return redirect(url_for("admin"))
     
     
 app.run(host="0.0.0.0", port=5001)
